@@ -11,4 +11,5 @@ public interface Scraper {
 	// returns a uniform data object
 	public void getData();
 
+
 }
