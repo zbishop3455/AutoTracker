@@ -1,8 +1,17 @@
 package scrapers;
 
-public abstract class ListingScraper implements Scraper {
+import listings.Listing;
+
+public abstract class ListingScraper implements Runnable, Scraper {
 
 
-	abstract protected void createListing();
+	abstract protected void addListing();
+
+	public Listing getData()
+	{
+		Listing test = null;
+
+		return test;
+	}
 
 }

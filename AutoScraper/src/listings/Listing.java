@@ -3,7 +3,7 @@
 // Purpose: Base type for scraped data
 
 
-package Listings;
+package listings;
 
 public interface Listing {
 

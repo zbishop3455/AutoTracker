@@ -4,12 +4,14 @@
 
 package scrapers;
 
+import listings.Listing;
+
 public interface Scraper {
 
 	public void scrape();
 
 	// returns a uniform data object
-	public void getData();
+	public Listing getData();
 
 
 }
