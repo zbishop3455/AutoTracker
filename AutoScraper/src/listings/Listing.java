@@ -8,17 +8,17 @@ package listings;
 public interface Listing {
 
 
-	protected int getPrice();
+	public int getPrice();
 
-	protected int getType();
+	public int getType();
 
-	protected int getYear();
+	public int getYear();
 
-	protected int getModel();
+	public int getModel();
 
-	protected String getUrl();
+	public String getUrl();
 
-	protected String getLocation();
+	public String getLocation();
 
 
 	//Test Push
