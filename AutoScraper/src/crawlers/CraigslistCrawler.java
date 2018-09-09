@@ -3,6 +3,10 @@
 // Purpose: Provide class that will do a restricted or unrestricted crawling of craigslist
 
 
+/*
+ *
+ */
+
 package crawlers;
 
 import java.util.LinkedList;
@@ -26,20 +30,10 @@ public class CraigslistCrawler extends ThreadedCrawler {
 	}
 
 
-	public CraigslistCrawler(String startingUrl){
 
+	public CraigslistCrawler(String location){
+		this.locationRestriction = location;
 	}
-
-
-	public CraigslistCrawler(String startingUrl, String urlRestriction){
-
-	}
-
-
-	public CraigslistCrawler(String startingUrl, String urlRestriction, String locationRestriction){
-
-	}
-
 
 
 	@Override
@@ -58,6 +52,11 @@ public class CraigslistCrawler extends ThreadedCrawler {
 	public void run() {
 		// TODO Auto-generated method stub
 
+	}
+
+
+	public void setStartingUrl(String url){
+		this.startingUrl = url;
 	}
 
 
