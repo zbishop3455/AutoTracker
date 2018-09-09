@@ -6,6 +6,7 @@ public class CraigslistListing implements Listing {
 	private int price;
 	private int type;
 	private int year;
+	private int internalId;
 	private String url;
 	private String location;
 

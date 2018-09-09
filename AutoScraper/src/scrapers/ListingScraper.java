@@ -14,4 +14,9 @@ public abstract class ListingScraper implements Runnable, Scraper {
 		return test;
 	}
 
+	public void run()
+	{
+
+	}
+
 }
