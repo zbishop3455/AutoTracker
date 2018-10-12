@@ -11,6 +11,7 @@ package crawlers;
 
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -40,7 +41,7 @@ public class CraigslistCrawler extends ThreadedCrawler {
 
 	public CraigslistCrawler(){
 		this.startingPage = 0;
-		this.maxPages = 1000;
+		this.maxPages = 5;
 	}
 
 
@@ -51,8 +52,6 @@ public class CraigslistCrawler extends ThreadedCrawler {
 
 
 	public CraigslistCrawler(String location){
-		this.startingPage = 0;
-		this.maxPages = 1000;
 		this.locationRestriction = location;
 		this.startingUrl ="https://" + this.locationRestriction + ".craigslist.org/d/cars-trucks/search/cta";
 	}
@@ -84,24 +83,50 @@ public class CraigslistCrawler extends ThreadedCrawler {
 
 	// recursivly scrapes all listsings down off a CL page
 	// finds link to the next page
-	private void crawl(int curDepth, int maxDepth, String pageUrl) {
+	private List<String> crawl() {
 
-		// scrape the page
-		Document page = this.getWebPage(pageUrl);
-
-		// find all listings
-		Elements listings = page.getElementsByClass("result-row");
-
-		// extract links from listings
+		String previousUrl = "";
+		String nextUrl = this.startingUrl;
 		LinkedList<String> urls = new LinkedList<String>();
-		for (Element curListing : listings) {
-			String curUrl = curListing.select("a").first().attr("href");
-			System.out.println(curUrl);
-			urls.add(curUrl);
+
+		boolean keepCrawling = true;
+
+		long startTime = System.currentTimeMillis();
+
+		while (keepCrawling) {
+
+			// scrape the page
+			Document page = this.getWebPage(nextUrl);
+
+			// find all listings
+			Elements listings = page.getElementsByClass("result-row");
+
+			// extract links from listings
+			for (Element curListing : listings) {
+				String curListingUrl = curListing.select("a").first().attr("href");
+				urls.add(curListingUrl);
+			}
+
+			System.out.println(urls.size());
+
+			previousUrl = nextUrl;
+
+			// Get next page url
+			Element nextPage = page.getElementsByClass("button next").first();
+			nextUrl = nextPage.absUrl("href");
+			System.out.println(nextUrl);
+
+
+			if (nextUrl.equals(previousUrl)) keepCrawling = false;
+
+
 		}
 
-		System.out.println(urls.size());
+		long stopTime = System.currentTimeMillis();
 
+		System.out.println("Finished CL in: " + urls.size() + " in "+ (stopTime - startTime) + "ms");
+
+		return urls;
 	}
 
 
@@ -114,7 +139,7 @@ public class CraigslistCrawler extends ThreadedCrawler {
 	@Override
 	public void start() {
 		System.out.println("Starting");
-		this.crawl(0, this.maxPages, this.startingUrl);
+		List<String> scrapedLinks = this.crawl();
 		System.out.println("Finished");
 	}
 
