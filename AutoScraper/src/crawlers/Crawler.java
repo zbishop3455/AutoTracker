@@ -5,15 +5,11 @@
 
 package crawlers;
 
-import java.util.LinkedList;;
 
 
 public interface Crawler {
 
 	// starts crawling process
-	public void crawl();
-
-
-	public LinkedList<String> getUrls();
+	public void start();
 
 }
