@@ -21,7 +21,7 @@ public class SearchRequestFactory
 	}
 
 	public SearchRequest createCarsDirectSearchRequest(SearchOptions options){
-		return new CarsDirectsSearchRequest(options);
+		return new CarsDirectSearchRequest(options);
 
 	}
 

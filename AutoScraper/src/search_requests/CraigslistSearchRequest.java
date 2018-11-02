@@ -27,13 +27,13 @@ public class CraigslistSearchRequest extends SearchRequest{
 		// craft url from search options
 		String url = this.createUrl();
 
-		try {
-			Document doc = Jsoup.connect(url).get();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Document doc = Jsoup.connect(url).get();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 
-
+		System.out.println("HELLOW WORLD");
 
 		return null;
 	}
@@ -41,7 +41,7 @@ public class CraigslistSearchRequest extends SearchRequest{
 	// create request URL for
 	private String createUrl() {
 
-		return null;
+		return "";
 	}
 
 
