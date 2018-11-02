@@ -7,15 +7,13 @@ import com.auto_scraper.SearchResult;
 
 public abstract class SearchRequest implements Callable<List<SearchResult>> {
 
-	List<SearchResult> results;
-
 	@Override
 	public List<SearchResult> call() throws Exception {
-		return this.results;
+		return this.request();
 	}
 
 	// this method must set the value results
-	protected abstract void request();
+	protected abstract List<SearchResult> request();
 
 
 
