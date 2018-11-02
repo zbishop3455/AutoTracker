@@ -23,6 +23,7 @@ public class GUI {
 		// populate options
 		SearchOptions options = new SearchOptions();
 
+
 		// start the requests
 		requestManager.submit(options);
 

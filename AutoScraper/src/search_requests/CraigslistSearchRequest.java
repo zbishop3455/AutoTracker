@@ -18,6 +18,7 @@ public class CraigslistSearchRequest extends SearchRequest{
 	public CraigslistSearchRequest(SearchOptions options){
 		this.options = options;
 		new ArrayList<SearchResult>();
+
 	}
 
 	@Override

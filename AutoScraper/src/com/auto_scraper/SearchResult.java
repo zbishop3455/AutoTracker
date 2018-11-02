@@ -24,6 +24,7 @@ public class SearchResult {
 		this.transmisison = transmission;
 		this.miles = miles;
 		this.price = price;
+
 	}
 
 	public String getLink() {

@@ -10,6 +10,7 @@ public abstract class SearchRequest implements Callable<List<SearchResult>> {
 	@Override
 	public List<SearchResult> call() throws Exception {
 		return this.request();
+
 	}
 
 	// this method must set the value results

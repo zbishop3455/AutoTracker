@@ -13,6 +13,7 @@ public class SearchOptions
 	private String color = null;
 	private String make = null;
 
+
 	// price range
 	private int minPrice = 0;
 	private int maxPrice = 999999;
