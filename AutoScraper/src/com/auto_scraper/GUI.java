@@ -14,4 +14,18 @@ public class GUI {
 
 	}
 
+	// Bypass GUI input for dev
+	public void test() {
+
+		// Single Threaded manager
+		RequestManager requestManager = new RegularRequestManager();
+
+		// populate options
+		SearchOptions options = new SearchOptions();
+
+		// start the requests
+		requestManager.submit(options);
+
+	}
+
 }
