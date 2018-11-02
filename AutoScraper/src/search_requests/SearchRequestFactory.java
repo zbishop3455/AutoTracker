@@ -7,7 +7,22 @@
 
 package search_requests;
 
-public class SearchRequestFactory 
+import com.auto_scraper.SearchOptions;
+
+public class SearchRequestFactory
 {
+
+	public SearchRequestFactory(){
+
+	}
+
+	public SearchRequest createCraigslistSearchRequest(SearchOptions options){
+		return new CraigslistSearchRequest(options);
+	}
+
+	public SearchRequest createCarsDirectSearchRequest(SearchOptions options){
+		return new CarsDirectsSearchRequest(options);
+
+	}
 
 }
