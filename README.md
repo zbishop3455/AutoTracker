@@ -1,2 +1,2 @@
 # AutoTracker
-Automotive scraping project in Java
+Multithreaded and Single threaded versions of a car search engine.
