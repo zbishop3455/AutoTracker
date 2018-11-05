@@ -20,7 +20,11 @@ public class SearchOptions
 
 	// odometer range
 	private int minMiles = 0;
-	private int maxMiels = 9999999;
+	private int maxMiles = 9999999;
+
+	// year range
+	private int minYear = 0;
+	private int maxYear = 99999999;
 
 	public SearchOptions(){
 
@@ -74,14 +78,29 @@ public class SearchOptions
 		this.minMiles = minMiles;
 	}
 
-	public int getMaxMiels() {
-		return maxMiels;
+	public int getMaxMiles() {
+		return maxMiles;
 	}
 
-	public void setMaxMiels(int maxMiels) {
-		this.maxMiels = maxMiels;
+	public void setMaxMiles(int maxMiles) {
+		this.maxMiles = maxMiles;
 	}
 
+	public int getMaxYear() {
+		return this.maxYear;
+	}
+
+	public void setMaxYear(int maxYear) {
+		this.maxYear = maxYear;
+	}
+
+	public int getMinYear() {
+		return this.minYear;
+	}
+
+	public void setMinYear(int year){
+		this.minYear = year;
+	}
 
 
 }
