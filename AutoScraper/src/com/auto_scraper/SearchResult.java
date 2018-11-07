@@ -8,23 +8,34 @@ package com.auto_scraper;
 
 public class SearchResult {
 
+	private String name;
 	private String link;
 	private String imageLink;
 	private String transmisison;
 	private int miles;
 	private int price;
+	private int year;
 
 	public SearchResult() {
 
 	}
 
-	public SearchResult(String link, String imageLink, String transmission, int miles, int price) {
+	public SearchResult(String name, String link, String imageLink, String transmission, int miles, int price, int year) {
+		this.name = name;
 		this.link = link;
 		this.imageLink = imageLink;
 		this.transmisison = transmission;
 		this.miles = miles;
 		this.price = price;
+		this.year = year;
+	}
 
+	public String getName(){
+		return this.name;
+	}
+
+	public void setName(String name){
+		this.name = name;
 	}
 
 	public String getLink() {
