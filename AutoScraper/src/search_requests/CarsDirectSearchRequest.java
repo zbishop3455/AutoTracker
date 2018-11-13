@@ -1,13 +1,14 @@
 /*
  * Author: Adam Harpeanu
  * 11/1/18
- * Purpose is to go through the Cars direct websites with specific search requests that with give back a 
- * list of complete search results 
+ * Purpose is to go through the Cars direct websites with specific search requests that with give back a
+ * list of complete search results
  */
 
 package search_requests;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -20,14 +21,14 @@ public class CarsDirectSearchRequest extends SearchRequest
 {
 	private SearchOptions options;
 	private String link;
-	
+
 	public CarsDirectSearchRequest(SearchOptions options)
 	{
 		this.options=options;
 	}
-	
+
 	@Override
-	protected List<SearchResult> request() 
+	protected List<SearchResult> request()
 	{
 		try{
 			Document doc= Jsoup.connect(link).get();
@@ -37,9 +38,9 @@ public class CarsDirectSearchRequest extends SearchRequest
 		}
 		return null;
 	}
-	
-	public void CreateLink ()
+
+	public String CreateLink ()
 	{
-		
+		return "GOODLE";
 	}
 }
