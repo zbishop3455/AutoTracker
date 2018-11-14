@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -82,7 +84,7 @@ public class CraigslistSearchRequest extends SearchRequest{
 	}
 
 	// scrapes listings from cl document
-	private ArrayList<SearchResult> scrapeListings(Document doc){
+	private ArrayList<SearchResult> scrapeListings(Document doc) {
 
 		ArrayList<SearchResult> finished = new ArrayList<SearchResult>();
 
@@ -90,36 +92,59 @@ public class CraigslistSearchRequest extends SearchRequest{
 		Elements listingDivs = doc.select("li.result-row");
 
 		// loop through each result and parse out info
-		for (Element e : listingDivs){
+		for (Element e : listingDivs) {
 
-			SearchResult r = new SearchResult();
+			try {
 
-			// parse link
-			Element link = e.select("a[href]").first();
-			r.setLink(link.attr("href"));
+				SearchResult r = new SearchResult();
 
-			Elements info = e.select("p.result-info");
+				// parse link
+				Element link = e.select("a[href]").first();
+				r.setLink(link.attr("href"));
 
-			// parse name
-			Element name = info.select("a.result-title.hdrlnk").first();
-			r.setName(name.attr("href"));
+				Elements info = e.select("p.result-info");
 
-			// price
-			Element price = info.select("span.result-price").first();
-			if (price != null) {
-				String rawPrice = price.text();
+				// parse name
+				Element name = info.select("a.result-title.hdrlnk").first();
+				if (name != null) {
+					r.setName(name.text());
+					// see if there are 4 digits in a row (probably the year if there are)
+					Pattern fourDigitPattern = Pattern.compile("\\d\\d\\d\\d");
+					Matcher matcher = fourDigitPattern.matcher(name.text());
+					if (matcher.find()) {
+						r.setYear(Integer.parseInt(matcher.group(0)));
+					}
+				}
+
+				// price
+				Element price = info.select("span.result-price").first();
+				if (price != null) {
+					String rawPrice = price.text();
+					rawPrice = rawPrice.replace("$", "");
+					r.setPrice(Integer.parseInt(rawPrice));
+				}
+
+				// location
+				Element location = info.select("span.result-hood").first();
+				if (location != null) {
+					r.setLocation(location.text());
+				}
+
+				// time
+				Element date = info.select("time.result-date").first();
+				if (date != null) {
+					r.setListingDate(date.attr("datetime"));
+				}
+
+				finished.add(r);
+				r.print();
+
+			} catch(Exception ex) {
+
 			}
-
-			// location
-			Element location = info.select("span.result-hood").first();
-			if (location != null) {
-				System.out.println(location.text());
-			}
-
-
 		}
 
-		System.out.println(listingDivs.size());
+		System.out.println(finished.size());
 
 		return finished;
 	}

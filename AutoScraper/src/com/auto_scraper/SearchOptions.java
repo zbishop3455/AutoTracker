@@ -9,6 +9,8 @@ package com.auto_scraper;
 
 public class SearchOptions
 {
+
+
 	private String keywords = null;
 	private String color = null;
 	private String make = null;

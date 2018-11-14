@@ -10,8 +10,8 @@ public class SearchResult {
 
 	private String name;
 	private String link;
-	private String imageLink;
-	private String transmisison;
+	private String listingDate;
+	private String location;
 	private int miles;
 	private int price;
 	private int year;
@@ -20,14 +20,12 @@ public class SearchResult {
 
 	}
 
-	public SearchResult(String name, String link, String imageLink, String transmission, int miles, int price, int year) {
-		this.name = name;
-		this.link = link;
-		this.imageLink = imageLink;
-		this.transmisison = transmission;
-		this.miles = miles;
-		this.price = price;
-		this.year = year;
+	public void print() {
+		String p = "";
+		p += this.name;
+		p += " |||| ";
+		p += Integer.toString(this.year);
+		System.out.println(p);
 	}
 
 	public String getName(){
@@ -46,21 +44,6 @@ public class SearchResult {
 		this.link = link;
 	}
 
-	public String getImageLink() {
-		return imageLink;
-	}
-
-	public void setImageLink(String imageLink) {
-		this.imageLink = imageLink;
-	}
-
-	public String getTransmisison() {
-		return transmisison;
-	}
-
-	public void setTransmisison(String transmisison) {
-		this.transmisison = transmisison;
-	}
 
 	public int getMiles() {
 		return miles;
@@ -76,6 +59,30 @@ public class SearchResult {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public int getYear() {
+		return this.year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public String getListingDate() {
+		return this.listingDate;
+	}
+
+	public void setListingDate(String listingDate) {
+		this.listingDate = listingDate;
+	}
+
+	public String getLocation() {
+		return this.location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 }
