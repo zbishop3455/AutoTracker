@@ -109,10 +109,14 @@ public class CraigslistSearchRequest extends SearchRequest{
 				if (name != null) {
 					r.setName(name.text());
 					// see if there are 4 digits in a row (probably the year if there are)
-					Pattern fourDigitPattern = Pattern.compile("\\d\\d\\d\\d");
-					Matcher matcher = fourDigitPattern.matcher(name.text());
-					if (matcher.find()) {
-						r.setYear(Integer.parseInt(matcher.group(0)));
+					try {
+						Pattern fourDigitPattern = Pattern.compile("\\d\\d\\d\\d");
+						Matcher matcher = fourDigitPattern.matcher(name.text());
+						if (matcher.find()) {
+							r.setYear(Integer.parseInt(matcher.group(0)));
+						}
+					} catch (Exception ex) {
+
 					}
 				}
 
@@ -136,15 +140,15 @@ public class CraigslistSearchRequest extends SearchRequest{
 					r.setListingDate(date.attr("datetime"));
 				}
 
+				r.setPlatform("Craigslist");
 				finished.add(r);
-				r.print();
 
 			} catch(Exception ex) {
 
 			}
 		}
 
-		System.out.println(finished.size());
+		System.out.println("Found " + finished.size() + " craigslist listings!");
 
 		return finished;
 	}

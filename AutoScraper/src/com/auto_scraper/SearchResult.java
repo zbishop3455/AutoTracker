@@ -12,6 +12,8 @@ public class SearchResult {
 	private String link;
 	private String listingDate;
 	private String location;
+	// platform is where the listing came from ex: Craigslist
+	private String platform;
 	private int miles;
 	private int price;
 	private int year;
@@ -23,7 +25,7 @@ public class SearchResult {
 	public void print() {
 		String p = "";
 		p += this.name;
-		p += " |||| ";
+		p += " | ";
 		p += Integer.toString(this.year);
 		System.out.println(p);
 	}
@@ -83,6 +85,14 @@ public class SearchResult {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public String getPlatform() {
+		return this.platform;
+	}
+
+	public void setPlatform(String platform) {
+		this.platform = platform;
 	}
 
 }
