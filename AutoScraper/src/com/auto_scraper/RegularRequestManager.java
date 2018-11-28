@@ -22,12 +22,13 @@ public class RegularRequestManager implements RequestManager {
 
 		// test craigslist request
 		SearchRequest testCLRequest = factory.createCraigslistSearchRequest(options);
-
+		SearchRequest testCFSRequest = factory.createCarsForSaleSearchRequest(options);
 		//SearchRequest testCDRequest = factory.createCarsDirectSearchRequest(options);
 
 		try {
-			allResults.addAll(testCLRequest.call());
-			//testCDRequest.call();
+			//allResults.addAll(testCLRequest.call());
+			allResults.addAll(testCFSRequest.call());
+			//allResults.addAll(testCDRequest.call());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

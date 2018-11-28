@@ -25,4 +25,8 @@ public class SearchRequestFactory
 
 	}
 
+	public SearchRequest createCarsForSaleSearchRequest(SearchOptions options) {
+		return new CarsForSaleSearchRequest(options);
+	}
+
 }
