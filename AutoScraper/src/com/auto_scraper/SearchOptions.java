@@ -9,22 +9,24 @@ package com.auto_scraper;
 
 public class SearchOptions
 {
+
+
 	private String keywords = null;
 	private String color = null;
 	private String make = null;
 
 
 	// price range
-	private int minPrice = 0;
-	private int maxPrice = 999999;
+	private int minPrice = -1;
+	private int maxPrice = -1;
 
 	// odometer range
-	private int minMiles = 0;
-	private int maxMiles = 9999999;
+	private int minMiles = -1;
+	private int maxMiles = -1;
 
 	// year range
-	private int minYear = 0;
-	private int maxYear = 99999999;
+	private int minYear = -1;
+	private int maxYear = -1;
 
 	public SearchOptions(){
 

@@ -8,23 +8,34 @@ package com.auto_scraper;
 
 public class SearchResult {
 
+	private String name;
 	private String link;
-	private String imageLink;
-	private String transmisison;
+	private String listingDate;
+	private String location;
+	// platform is where the listing came from ex: Craigslist
+	private String platform;
 	private int miles;
 	private int price;
+	private int year;
 
 	public SearchResult() {
 
 	}
 
-	public SearchResult(String link, String imageLink, String transmission, int miles, int price) {
-		this.link = link;
-		this.imageLink = imageLink;
-		this.transmisison = transmission;
-		this.miles = miles;
-		this.price = price;
+	public void print() {
+		String p = "";
+		p += this.name;
+		p += " | ";
+		p += Integer.toString(this.year);
+		System.out.println(p);
+	}
 
+	public String getName(){
+		return this.name;
+	}
+
+	public void setName(String name){
+		this.name = name;
 	}
 
 	public String getLink() {
@@ -35,21 +46,6 @@ public class SearchResult {
 		this.link = link;
 	}
 
-	public String getImageLink() {
-		return imageLink;
-	}
-
-	public void setImageLink(String imageLink) {
-		this.imageLink = imageLink;
-	}
-
-	public String getTransmisison() {
-		return transmisison;
-	}
-
-	public void setTransmisison(String transmisison) {
-		this.transmisison = transmisison;
-	}
 
 	public int getMiles() {
 		return miles;
@@ -65,6 +61,38 @@ public class SearchResult {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public int getYear() {
+		return this.year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public String getListingDate() {
+		return this.listingDate;
+	}
+
+	public void setListingDate(String listingDate) {
+		this.listingDate = listingDate;
+	}
+
+	public String getLocation() {
+		return this.location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getPlatform() {
+		return this.platform;
+	}
+
+	public void setPlatform(String platform) {
+		this.platform = platform;
 	}
 
 }

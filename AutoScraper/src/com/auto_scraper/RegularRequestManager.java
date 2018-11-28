@@ -26,10 +26,14 @@ public class RegularRequestManager implements RequestManager {
 		//SearchRequest testCDRequest = factory.createCarsDirectSearchRequest(options);
 
 		try {
-			testCLRequest.call();
+			allResults.addAll(testCLRequest.call());
 			//testCDRequest.call();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+
+		if (! allResults.isEmpty()) {
+			ResultsWindow window = new ResultsWindow(allResults);
 		}
 
 	}
