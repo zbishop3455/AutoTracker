@@ -20,7 +20,7 @@ public class SearchOptions
 
 	// odometer range
 	private int minMiles = 0;
-	private int maxMiels = 9999999;
+	private int maxMiles = 9999999;
 
 	public SearchOptions(){
 
@@ -74,12 +74,12 @@ public class SearchOptions
 		this.minMiles = minMiles;
 	}
 
-	public int getMaxMiels() {
-		return maxMiels;
+	public int getMaxMiles() {
+		return maxMiles;
 	}
 
-	public void setMaxMiels(int maxMiels) {
-		this.maxMiels = maxMiels;
+	public void setMaxMiles(int maxMiles) {
+		this.maxMiles = maxMiles;
 	}
 
 

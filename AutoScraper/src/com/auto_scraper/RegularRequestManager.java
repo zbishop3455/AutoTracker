@@ -21,13 +21,13 @@ public class RegularRequestManager implements RequestManager {
 		List<SearchResult> allResults = new ArrayList<SearchResult>();
 
 		// test craigslist request
-		SearchRequest testCLRequest = factory.createCraigslistSearchRequest(options);
+		//SearchRequest testCLRequest = factory.createCraigslistSearchRequest(options);
 
 		SearchRequest testCDRequest = factory.createCarsDirectSearchRequest(options);
 
 
 		try {
-			testCLRequest.call();
+			//testCLRequest.call();
 			testCDRequest.call();
 		} catch (Exception e) {
 

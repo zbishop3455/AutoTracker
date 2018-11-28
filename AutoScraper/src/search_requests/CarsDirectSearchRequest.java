@@ -19,8 +19,8 @@ import com.auto_scraper.SearchResult;
 public class CarsDirectSearchRequest extends SearchRequest
 {
 	private SearchOptions options;
-	private String link;
-	
+	//private String link = "https://www.carsdirect.com/used_cars/search";	
+	private String link = "https://www.carsdirect.com/used_cars/listings/";
 	public CarsDirectSearchRequest(SearchOptions options)
 	{
 		this.options=options;
@@ -30,7 +30,13 @@ public class CarsDirectSearchRequest extends SearchRequest
 	protected List<SearchResult> request() 
 	{
 		try{
+			//System.out.println("Hello World");
 			Document doc= Jsoup.connect(link).get();
+			String title = doc.title();
+			String body= doc.body().text();
+			System.out.println(title);
+			System.out.println(body);
+			CreateLink();
 		}
 		catch(IOException e){
 			e.printStackTrace();
@@ -40,6 +46,23 @@ public class CarsDirectSearchRequest extends SearchRequest
 	
 	public void CreateLink ()
 	{
-		
+		//this is only if "KeyWords" is equivalent to model
+		try
+		{
+			if (options.getMake() != null && options.getKeywords() != null)
+			{
+				link = link + options.getMake() + "/" + options.getKeywords() + "?" + "zipcode=46240" + "&dealerId=" + "&distance=" + options.getMaxMiles();
+				link = link + "&yearFrom=&yearTo=" + "&priceFrom=" + options.getMinPrice() + "&priceTo=" + options.getMaxPrice();
+			}
+			else 
+			{
+				throw new NoSuchFieldException("The make or model was not specified"); 
+			}
+		}
+		catch(NoSuchFieldException e)
+		{
+			System.out.println("No specified make or model");
+		}
+		System.out.println(link);
 	}
 }
