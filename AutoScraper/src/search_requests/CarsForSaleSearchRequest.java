@@ -1,6 +1,7 @@
 package search_requests;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.auto_scraper.SearchOptions;
@@ -51,18 +53,44 @@ public class CarsForSaleSearchRequest extends SearchRequest {
 
 		ArrayList<SearchResult> finished = new ArrayList<SearchResult>();
 
-		// select all listings with class "result-row"
-		System.out.println(doc.text());
-		Elements listingDivs = doc.select("div.row");
-		System.out.println(listingDivs.size());
+		Elements listingDivs = doc.select("article.srp-list-item");
+		for (Element curListing : listingDivs) {
+
+			SearchResult result = new SearchResult();
+
+			// title
+			String title = curListing.selectFirst("span.srp-list-item-basic-info-model").text();
+			result.setName(title);
+
+			// price
+			Element price = curListing.selectFirst("span.srp-list-item-price");
+			int extractedPrice = Integer.parseInt(price.text().replaceAll("[^0-9]", ""));
+			result.setPrice(extractedPrice);
+
+			// miles
+			Element miles = curListing.selectFirst("span.srp-list-item-basic-info-value");
+			int extractedMiles = Integer.parseInt(miles.text().replaceAll("[^0-9]", ""));
+			result.setMiles(extractedMiles);
+
+			Element location = curListing.selectFirst("div.srp-list-item-dealership-location");
+			result.setLocation(location.text().substring(location.text().indexOf(' '), location.text().indexOf(',')).replaceAll(" ", ""));
+
+			String date = new SimpleDateFormat("MM-dd-yyyy").toString();
+			result.setListingDate(date);
+
+			finished.add(result);
+
+		}
 
 
 		return finished;
 	}
 
+
 	private String createUrl() {
 
-		String base = "https://www.carsforsale.com/Search?";
+		String base = "https://www.carfax.com/Used-Cars-in-Indianapolis-IN_c19840";
+
 		HashMap<String, String> params = new HashMap<String, String>();
 
 		// add parameters if they exists
@@ -73,10 +101,6 @@ public class CarsForSaleSearchRequest extends SearchRequest {
 		if (this.options.getMinPrice() != -1) params.put("MinPrice", Integer.toString(this.options.getMinPrice()));
 		if (this.options.getMaxPrice() != -1) params.put("MaxPrice", Integer.toString(this.options.getMaxPrice()));
 		if (this.options.getMake() != null) params.put("Model", this.options.getMake());
-
-		// constants
-		params.put("ZipCode", "46231");
-		params.put("PageResultSize", "300");
 
 		// create output string
 		for (String key : params.keySet()) {
