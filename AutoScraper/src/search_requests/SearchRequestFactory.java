@@ -25,8 +25,8 @@ public class SearchRequestFactory
 
 	}
 
-	public SearchRequest createCarsForSaleSearchRequest(SearchOptions options) {
-		return new CarsForSaleSearchRequest(options);
+	public SearchRequest createCarfaxSearchRequest(SearchOptions options) {
+		return new CarfaxSearchRequest(options);
 	}
 
 }

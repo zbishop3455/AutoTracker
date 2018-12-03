@@ -15,11 +15,11 @@ import org.jsoup.select.Elements;
 import com.auto_scraper.SearchOptions;
 import com.auto_scraper.SearchResult;
 
-public class CarsForSaleSearchRequest extends SearchRequest {
+public class CarfaxSearchRequest extends SearchRequest {
 
 	private SearchOptions options;
 
-	public CarsForSaleSearchRequest(SearchOptions options) {
+	public CarfaxSearchRequest(SearchOptions options) {
 		this.options = options;
 	}
 
@@ -33,7 +33,6 @@ public class CarsForSaleSearchRequest extends SearchRequest {
 		// try to download the page
 		try {
 			doc = Jsoup.connect(url).get();
-			System.out.println(url);
 
 		} catch (IOException e) {
 			System.out.println("Error Connecting to CarsForSale.com! ");
@@ -77,6 +76,8 @@ public class CarsForSaleSearchRequest extends SearchRequest {
 
 			String date = new SimpleDateFormat("MM-dd-yyyy").toString();
 			result.setListingDate(date);
+
+			result.setPlatform("CarFax");
 
 			finished.add(result);
 

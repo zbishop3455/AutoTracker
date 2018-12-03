@@ -22,16 +22,24 @@ public class RegularRequestManager implements RequestManager {
 
 		// test craigslist request
 		SearchRequest testCLRequest = factory.createCraigslistSearchRequest(options);
-		SearchRequest testCFSRequest = factory.createCarsForSaleSearchRequest(options);
+		SearchRequest testCLRequest2 = factory.createCraigslistSearchRequest(options);
+		SearchRequest testCFSRequest = factory.createCarfaxSearchRequest(options);
 		//SearchRequest testCDRequest = factory.createCarsDirectSearchRequest(options);
 
+		Long startTime = System.currentTimeMillis();
+
 		try {
-			//allResults.addAll(testCLRequest.call());
+			allResults.addAll(testCLRequest.call());
+			allResults.addAll(testCLRequest2.call());
 			allResults.addAll(testCFSRequest.call());
 			//allResults.addAll(testCDRequest.call());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		// end timer
+		Long finishTime = System.currentTimeMillis();
+		System.out.println("Total Single Thread Time: " + Long.toString(finishTime - startTime) + " miliseconds");
 
 		if (! allResults.isEmpty()) {
 			ResultsWindow window = new ResultsWindow(allResults);
