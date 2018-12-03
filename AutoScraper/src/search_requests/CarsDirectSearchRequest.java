@@ -25,6 +25,7 @@ public class CarsDirectSearchRequest extends SearchRequest
 	public CarsDirectSearchRequest(SearchOptions options)
 	{
 		this.options=options;
+		
 	}
 
 	@Override
