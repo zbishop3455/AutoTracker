@@ -25,4 +25,8 @@ public class SearchRequestFactory
 
 	}
 
+	public SearchRequest createCarfaxSearchRequest(SearchOptions options) {
+		return new CarfaxSearchRequest(options);
+	}
+
 }

@@ -19,6 +19,7 @@ public class GUI {
 
 		// Single Threaded manager
 		RequestManager requestManager = new RegularRequestManager();
+		RequestManager threadedRequestmanager = new ThreadedRequestManager();
 
 		// populate options
 		SearchOptions options = new SearchOptions();
@@ -26,6 +27,7 @@ public class GUI {
 
 		// start the requests
 		requestManager.submit(options);
+		threadedRequestmanager.submit(options);
 
 	}
 

@@ -35,7 +35,6 @@ public class CraigslistSearchRequest extends SearchRequest{
 		// try to download the page
 		try {
 			doc = Jsoup.connect(url).get();
-			System.out.println(url);
 
 		} catch (IOException e) {
 			System.out.println("Error Connecting to CL! ");
@@ -78,7 +77,6 @@ public class CraigslistSearchRequest extends SearchRequest{
 			base += "=";
 			base += curParam;
 		}
-
 
 		return base;
 	}
@@ -147,8 +145,6 @@ public class CraigslistSearchRequest extends SearchRequest{
 
 			}
 		}
-
-		System.out.println("Found " + finished.size() + " craigslist listings!");
 
 		return finished;
 	}
