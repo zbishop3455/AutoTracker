@@ -36,9 +36,9 @@ public class ThreadedRequestManager implements RequestManager {
 
 		// submit tasks
 		Future<List<SearchResult>> r1 = executor.submit(testCLRequest);
-		Future<List<SearchResult>> r11 = executor.submit(testCLRequest2);
-		Future<List<SearchResult>> r2 = executor.submit(testCarfaxRequest);
-		Future<List<SearchResult>> r3 = executor.submit(testCarsDirectRequest);
+		Future<List<SearchResult>> r2 = executor.submit(testCLRequest2);
+		Future<List<SearchResult>> r3 = executor.submit(testCarfaxRequest);
+		Future<List<SearchResult>> r4 = executor.submit(testCarsDirectRequest);
 
 
 		executor.shutdown();
@@ -48,8 +48,9 @@ public class ThreadedRequestManager implements RequestManager {
 
 		try {
 			allResults.addAll(r1.get());
-			allResults.addAll(r2.get());
+			// exclude r2 since it is duplicate to drive the multithreading point home
 			allResults.addAll(r3.get());
+			allResults.addAll(r4.get());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {

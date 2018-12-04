@@ -27,7 +27,7 @@ public class GUI {
 
 		// start the requests
 		requestManager.submit(options);
-		//threadedRequestmanager.submit(options);
+		threadedRequestmanager.submit(options);
 
 	}
 

@@ -18,21 +18,23 @@ public class RegularRequestManager implements RequestManager {
 	@Override
 	public void submit(SearchOptions options) {
 
+		Long startTime = System.currentTimeMillis();
+
 		List<SearchResult> allResults = new ArrayList<SearchResult>();
 
 		// test craigslist request
-		SearchRequest testCLRequest = factory.createCraigslistSearchRequest(options);
-		SearchRequest testCLRequest2 = factory.createCraigslistSearchRequest(options);
-		SearchRequest testCFSRequest = factory.createCarfaxSearchRequest(options);
-		SearchRequest testCDRequest = factory.createCarsDirectSearchRequest(options);
+		SearchRequest CLRequest = factory.createCraigslistSearchRequest(options);
+		SearchRequest CLRequest2 = factory.createCraigslistSearchRequest(options);
+		SearchRequest CFRequest = factory.createCarfaxSearchRequest(options);
+		SearchRequest CDRequest = factory.createCarsDirectSearchRequest(options);
 
-		Long startTime = System.currentTimeMillis();
+
 
 		try {
-			//allResults.addAll(testCLRequest.call());
-			//allResults.addAll(testCLRequest2.call());
-			//allResults.addAll(testCFSRequest.call());
-			allResults.addAll(testCDRequest.call());
+			allResults.addAll(CLRequest.call());
+			allResults.addAll(CLRequest2.call());
+			allResults.addAll(CFRequest.call());
+			allResults.addAll(CDRequest.call());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
