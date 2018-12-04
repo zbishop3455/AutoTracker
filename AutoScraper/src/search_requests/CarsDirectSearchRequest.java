@@ -1,7 +1,7 @@
 /*
  * Author: Adam Harpeanu
  * 11/1/18
- * Purpose is to go through the Cars direct websites with specific search requests that with give back a
+ * Purpose is to go through the Cars direct Website with specific search requests that with give back a
  * list of complete search results
  */
 
