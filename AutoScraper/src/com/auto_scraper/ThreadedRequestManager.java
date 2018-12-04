@@ -29,6 +29,7 @@ public class ThreadedRequestManager implements RequestManager {
 		SearchRequest testCLRequest = factory.createCraigslistSearchRequest(options);
 		SearchRequest testCLRequest2 = factory.createCraigslistSearchRequest(options);
 		SearchRequest testCarfaxRequest = factory.createCarfaxSearchRequest(options);
+		SearchRequest testCarsDirectRequest = factory.createCarsDirectSearchRequest(options);
 
 		// create the thread pool
 		ExecutorService executor = Executors.newFixedThreadPool(3);
@@ -37,6 +38,7 @@ public class ThreadedRequestManager implements RequestManager {
 		Future<List<SearchResult>> r1 = executor.submit(testCLRequest);
 		Future<List<SearchResult>> r11 = executor.submit(testCLRequest2);
 		Future<List<SearchResult>> r2 = executor.submit(testCarfaxRequest);
+		Future<List<SearchResult>> r3 = executor.submit(testCarsDirectRequest);
 
 
 		executor.shutdown();
@@ -47,6 +49,7 @@ public class ThreadedRequestManager implements RequestManager {
 		try {
 			allResults.addAll(r1.get());
 			allResults.addAll(r2.get());
+			allResults.addAll(r3.get());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
